@@ -34,9 +34,7 @@ public class GameController : MonoBehaviour
     {
         if(begin)   {
             
-            Physics.gravity = plane.up * -9.81f;
-            
-            player.GetComponent<PlayerManager>().setFallTrue();
+            Physics.gravity = plane.up * -5f;
 
             MilliCount += Time.deltaTime *10;
             MilliDisplay = MilliCount.ToString("F0");
@@ -71,6 +69,7 @@ public class GameController : MonoBehaviour
         begin = true;
         game.SetActive(true);
         HUD.SetActive(true);
+        player.GetComponent<PlayerManager>().setFallTrue();
     }
 
     public void Lost()
