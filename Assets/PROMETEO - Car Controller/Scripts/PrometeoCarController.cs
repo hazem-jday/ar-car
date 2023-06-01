@@ -110,7 +110,7 @@ public class PrometeoCarController : MonoBehaviour
       //[Header("CONTROLS")]
       [Space(10)]
       //The following variables lets you to set up touch controls for mobile devices.
-      public bool useTouchControls = false;
+      public bool useTouchControls = true;
       public GameObject throttleButton;
       PrometeoTouchInput throttlePTI;
       public GameObject reverseButton;
@@ -161,10 +161,12 @@ public class PrometeoCarController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      //In this part, we set the 'carRigidbody' value with the Rigidbody attached to this
-      //gameObject. Also, we define the center of mass of the car with the Vector3 given
-      //in the inspector.
-      carRigidbody = gameObject.GetComponent<Rigidbody>();
+
+        
+        //In this part, we set the 'carRigidbody' value with the Rigidbody attached to this
+        //gameObject. Also, we define the center of mass of the car with the Vector3 given
+        //in the inspector.
+        carRigidbody = gameObject.GetComponent<Rigidbody>();
       carRigidbody.centerOfMass = bodyMassCenter;
 
       //Initial setup to calculate the drift value of the car. This part could look a bit
@@ -241,7 +243,13 @@ public class PrometeoCarController : MonoBehaviour
           }
         }
 
-        if(useTouchControls){
+        throttleButton = GameObject.FindGameObjectWithTag("ThrottleBtn");
+        reverseButton = GameObject.FindGameObjectWithTag("ReverseBtn");
+        turnRightButton = GameObject.FindGameObjectWithTag("RightBtn");
+        turnLeftButton = GameObject.FindGameObjectWithTag("LeftBtn");
+        handbrakeButton = GameObject.FindGameObjectWithTag("BrakeBtn");
+
+        if (useTouchControls){
           if(throttleButton != null && reverseButton != null &&
           turnRightButton != null && turnLeftButton != null
           && handbrakeButton != null){
@@ -259,7 +267,7 @@ public class PrometeoCarController : MonoBehaviour
             Debug.LogWarning(ex);
           }
         }
-
+        
     }
 
     // Update is called once per frame

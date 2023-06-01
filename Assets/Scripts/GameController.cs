@@ -23,10 +23,18 @@ public class GameController : MonoBehaviour
     public GameObject HUD;
 
     public GameObject player;
+    public GameObject car1;
+    public GameObject car2;
 
     private void Start()
     {
+        int carModel  = PlayerPrefs.GetInt("carModel", 0);
         //Found();
+        if (carModel == 0)
+            player = Instantiate(car1);
+        if (carModel == 1)
+            player = Instantiate(car2);
+        player.transform.parent = game.transform;
         Physics.gravity = Vector3.zero;
         
     }
