@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - fallPlane
+  - ThrottleBtn
+  - ReverseBtn
+  - RightBtn
+  - LeftBtn
+  - BrakeBtn
+  - FirstCheckPoint
   layers:
   - Default
   - TransparentFX

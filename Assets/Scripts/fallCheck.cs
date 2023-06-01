@@ -6,6 +6,10 @@ public class fallCheck : MonoBehaviour
 {
    public GameObject player;
 
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
     private void OnTriggerEnter(Collider collision) {
         if(collision.gameObject.tag =="Player"){
             player.GetComponent<PlayerManager>().setFallTrue();
