@@ -160,6 +160,8 @@ public class AICarController : MonoBehaviour
 
 
     public Transform target;
+    public Transform[] targets;
+    int i = 0;
 
     bool hitObstacle = false;
     // Start is called before the first frame update
@@ -282,6 +284,7 @@ public class AICarController : MonoBehaviour
                 Debug.LogWarning(ex);
             }
         }
+        target = targets[i];
 
     }
 
@@ -289,6 +292,20 @@ public class AICarController : MonoBehaviour
     void Update()
     {
 
+        if (i < 5 && Vector3.Distance(transform.position, targets[i].position) < 0.1f)
+        {
+            i++;
+            if (i < 5)
+            {
+                Debug.Log("d : " + Vector3.Distance(transform.position, targets[i].position) + " i : " + i);
+                target = targets[i];
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+
+        }
         //CAR DATA
 
         // We determine the speed of the car.
@@ -310,7 +327,7 @@ public class AICarController : MonoBehaviour
         In this part of the code we specify what the car needs to do if the user presses W (throttle), S (reverse),
         A (turn left), D (turn right) or Space bar (handbrake).
         */
-
+        /*
         if (throttlePTI.buttonPressed)
         {
             CancelInvoke("DecelerateCar");
@@ -355,47 +372,103 @@ public class AICarController : MonoBehaviour
         {
             ResetSteeringAngle();
         }
-
-        Vector3 targetDirection = target.position - transform.position; //vecteur direction vers une cible (point d'arriv�e)
-        float angle = Vector3.SignedAngle(transform.forward, targetDirection, transform.up); //calcul de l'angle vers la cible
-        if (Mathf.Abs(angle) > 1 && !hitObstacle) //si l'angle > 0 et pas de collisions probables, on se dirige vers la cible
+        */
+        if (i < 5)
         {
-            if (angle > 0)
+            Vector3 targetDirection = target.position - transform.position; //vecteur direction vers une cible (point d'arriv�e)
+            float angle = Vector3.SignedAngle(transform.forward, targetDirection, transform.up); //calcul de l'angle vers la cible
+            if (Mathf.Abs(angle) > 1 && !hitObstacle) //si l'angle > 0 et pas de collisions probables, on se dirige vers la cible
             {
-                TurnRight();
-            }
-            if (angle < 0)
-            {
-                TurnLeft();
+                if (angle > 0)
+                {
+                    TurnRight();
+                }
+                else
+                {
+                    TurnLeft();
+                }
             }
         }
-        hitObstacle = false; //on suppose qu'il n'y a pas d'obstacles
-        if ( // cas o� la ligne de centre, de droite centrale, ou droite ext�me d�tecte un objet
-            Physics.Linecast(transform.position + transform.forward * 3, transform.position + transform.forward * 10, out RaycastHit hitCenter) ||
-            Physics.Linecast(transform.position + transform.forward * 3, transform.position + transform.forward * 8 + transform.right * 3, out RaycastHit hitRightCenter) ||
-            Physics.Linecast(transform.position + transform.forward * 3, transform.position + transform.forward * 8 + transform.right * 6, out RaycastHit hitRight)
+
+
+        Vector3 cb, ce, rcb, rce, lcb, lce, rb, re, lb, le;
+
+        cb = transform.position + transform.forward * 4 * 0.008f + transform.up * 0.02f;
+        ce = transform.position + transform.forward * 7 * 0.008f + transform.up * 0.02f;
+        rcb = transform.position + transform.forward * 4 * 0.008f + transform.up * 0.02f;
+        rce = transform.position + transform.forward * 6 * 0.008f + transform.right * 3 * 0.008f + transform.up * 0.02f;
+        rb = transform.position + transform.forward * 4 * 0.008f + transform.up * 0.02f;
+        re = transform.position + transform.forward * 6 * 0.008f + transform.right * 6 * 0.008f + transform.up * 0.02f;
+        lcb = transform.position + transform.forward * 4 * 0.008f + transform.up * 0.02f;
+        lce = transform.position + transform.forward * 6 * 0.008f - transform.right * 3 * 0.008f + transform.up * 0.02f;
+        lb = transform.position + transform.forward * 4 * 0.008f + transform.up * 0.02f;
+        le = transform.position + transform.forward * 6 * 0.008f - transform.right * 6 * 0.008f + transform.up * 0.02f;
+        hitObstacle = false;
+        if (
+
+            Physics.Linecast(rcb, rce, out RaycastHit hitRightCenter) && !hitRightCenter.collider.isTrigger
+
         )
         {
+
+            Debug.Log("rc " + hitRightCenter.collider.name);
             hitObstacle = true;
-            TurnLeft(); //on tourne � gauche
+            TurnLeft();
         }
-        if ( // cas o� la ligne de gauche centrale ou gauche ext�me d�tecte un objet
-            Physics.Linecast(transform.position + transform.forward * 3, transform.position + transform.forward * 8 - transform.right * 3, out RaycastHit hitLeftCenter) ||
-            Physics.Linecast(transform.position + transform.forward * 3, transform.position + transform.forward * 8 - transform.right * 6, out RaycastHit hitLeft)
+        else if (
+
+            Physics.Linecast(rb, re, out RaycastHit hitRight) && !hitRight.collider.isTrigger
+
         )
         {
+            Debug.Log("r " + hitRight.collider.name);
             hitObstacle = true;
-            TurnRight(); // on tourne � droite
+            TurnLeft();
         }
 
 
-        //Debug.DrawLine(transform.position, transform.position + transform.forward * 5, Color.red);
-        //Debug.DrawLine(transform.position, transform.position + transform.forward * 5, Color.red);
-        //Debug.DrawLine(transform.position, transform.position + transform.forward * 5, Color.red);
 
+
+        if (
+            Physics.Linecast(cb, ce, out RaycastHit hitCenter) && !hitCenter.collider.isTrigger
+        )
+        {
+            Debug.Log("c " + hitCenter.collider.name);
+
+            hitObstacle = true;
+            TurnLeft();
+        }
+
+        if (
+            Physics.Linecast(lcb, lce, out RaycastHit hitLeftCenter) && !hitLeftCenter.collider.isTrigger
+        )
+        {
+            Debug.Log("lc " + hitLeftCenter.collider.name);
+            hitObstacle = true;
+            TurnRight();
+        }
+        else if (
+            Physics.Linecast(lb, le, out RaycastHit hitLeft) && !hitLeft.collider.isTrigger
+        )
+        {
+            Debug.Log("l " + hitLeft.collider.name);
+            hitObstacle = true;
+            TurnRight();
+        }
+
+
+        Debug.DrawLine(cb, ce, Color.red);
+
+        Debug.DrawLine(rcb, rce, Color.red);
+        Debug.DrawLine(rb, re, Color.red);
+
+        Debug.DrawLine(lcb, lce, Color.red);
+        Debug.DrawLine(lb, le, Color.red);
         CancelInvoke("DecelerateCar");
         deceleratingCar = false;
         GoForward();
+
+
 
         // We call the method AnimateWheelMeshes() in order to match the wheel collider movements with the 3D meshes of the wheels.
         AnimateWheelMeshes();
@@ -899,5 +972,16 @@ public class AICarController : MonoBehaviour
             driftingAxis = 0f;
         }
     }
+
+
+    private bool isCheckpoint(String s)
+    {
+        if (s.StartsWith("Checkpoint"))
+        {
+            return true;
+        }
+        return false;
+    }
+
 
 }

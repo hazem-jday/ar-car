@@ -63,7 +63,7 @@ Transform:
   m_GameObject: {fileID: 642287924342879162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.014, y: 0.014, z: 0.014}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4466888475822015697}
@@ -95,33 +95,33 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 642287924342879162}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0fefceefe666bb4682b272ec8c5bdd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 120
-  maxReverseSpeed: 45
-  accelerationMultiplier: 6
+  maxSpeed: 29
+  maxReverseSpeed: 34
+  accelerationMultiplier: 1
   maxSteeringAngle: 35
   steeringSpeed: 0.5
   brakeForce: 450
   decelerationMultiplier: 2
   handbrakeDriftMultiplier: 5
   bodyMassCenter: {x: 0, y: 0, z: 0}
-  frontLeftMesh: {fileID: 8649133034589738184}
-  frontLeftCollider: {fileID: 2239677824950174677}
-  frontRightMesh: {fileID: 3386343362015136015}
-  frontRightCollider: {fileID: 7877667524431639919}
-  rearLeftMesh: {fileID: 6204759407096980703}
-  rearLeftCollider: {fileID: 8615825633152659129}
-  rearRightMesh: {fileID: 2077481708272809950}
-  rearRightCollider: {fileID: 8706808774334851022}
+  frontLeftMesh: {fileID: 0}
+  frontLeftCollider: {fileID: 0}
+  frontRightMesh: {fileID: 0}
+  frontRightCollider: {fileID: 0}
+  rearLeftMesh: {fileID: 0}
+  rearLeftCollider: {fileID: 0}
+  rearRightMesh: {fileID: 0}
+  rearRightCollider: {fileID: 0}
   useEffects: 1
-  RLWParticleSystem: {fileID: 4402756320724654539}
-  RRWParticleSystem: {fileID: 4402756320999286479}
-  RLWTireSkid: {fileID: 7045468751846977024}
-  RRWTireSkid: {fileID: 7045468751210077382}
+  RLWParticleSystem: {fileID: 0}
+  RRWParticleSystem: {fileID: 0}
+  RLWTireSkid: {fileID: 0}
+  RRWTireSkid: {fileID: 0}
   useUI: 0
   carSpeedText: {fileID: 0}
   useSounds: 0
@@ -185,6 +185,7 @@ MonoBehaviour:
   isDrifting: 0
   isTractionLocked: 0
   target: {fileID: 0}
+  targets: []
 --- !u!1 &934883528070179459
 GameObject:
   m_ObjectHideFlags: 0

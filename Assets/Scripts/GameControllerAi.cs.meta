@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 98e2bc7b27cb2124f8aec3ddce275fa4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - game: {instanceID: 0}
+  - plane: {instanceID: 0}
+  - MinuteBox: {instanceID: 0}
+  - SecondBox: {instanceID: 0}
+  - MilliBox: {instanceID: 0}
+  - PauseScreen: {instanceID: 0}
+  - HUD: {instanceID: 0}
+  - player: {instanceID: 0}
+  - car1: {fileID: 642287924342879162, guid: 888e163bbe3592c4f8e65a045b817dc7, type: 3}
+  - car2: {fileID: 642287924342879162, guid: e1fdd874f38d97e4f9738b3f9b50302a, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
