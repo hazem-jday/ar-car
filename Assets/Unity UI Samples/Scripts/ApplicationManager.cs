@@ -13,16 +13,21 @@ public class ApplicationManager : MonoBehaviour {
 	private void Start()
 	{
 		carModel = PlayerPrefs.GetInt("carModel", 0);
+		if (red != null && green != null)
+		{
 
-		if (carModel == 0)
-		{
-			red.gameObject.SetActive(true);
-			green.gameObject.SetActive(false);
-		}
-		else
-		{
-			red.gameObject.SetActive(false);
-			green.gameObject.SetActive(true);
+		
+			if (carModel == 0)
+			{
+			
+				red.gameObject.SetActive(true);
+				green.gameObject.SetActive(false);
+			}
+			else
+			{
+				red.gameObject.SetActive(false);
+				green.gameObject.SetActive(true);
+			}
 		}
 	}
 	public void Quit () 
@@ -39,15 +44,18 @@ public class ApplicationManager : MonoBehaviour {
 
 		PlayerPrefs.SetInt("carModel", carModel == 0 ? 1 : 0);
 		carModel = PlayerPrefs.GetInt("carModel", 0);
-		if (carModel == 0)
+		if (red != null && green != null)
 		{
-			red.gameObject.SetActive(true);
-			green.gameObject.SetActive(false);
-		}
-		else
-		{
-			red.gameObject.SetActive(false);
-			green.gameObject.SetActive(true);
+			if (carModel == 0)
+			{
+				red.gameObject.SetActive(true);
+				green.gameObject.SetActive(false);
+			}
+			else
+			{
+				red.gameObject.SetActive(false);
+				green.gameObject.SetActive(true);
+			}
 		}
 	}
 
