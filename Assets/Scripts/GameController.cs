@@ -39,12 +39,19 @@ public class GameController : MonoBehaviour
             player = Instantiate(car2);
         player.transform.parent = game.transform;
         Physics.gravity = Vector3.zero;
-        
+
+        MilliCount = 0;
+        SecondCount = 0;
+        MinuteCount = 0;
+
     }
     private void Update()
     {
         if(begin)   {
+
+
             
+
             Physics.gravity = plane.up * -5f;
 
             MilliCount += Time.deltaTime *10;
