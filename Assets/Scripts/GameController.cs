@@ -26,6 +26,9 @@ public class GameController : MonoBehaviour
     public GameObject car1;
     public GameObject car2;
 
+    public GameObject WinScreen;
+    public GameObject finalTimerBox;
+
     private void Start()
     {
         int carModel  = PlayerPrefs.GetInt("carModel", 0);
@@ -78,6 +81,7 @@ public class GameController : MonoBehaviour
         game.SetActive(true);
         HUD.SetActive(true);
         player.GetComponent<PlayerManager>().setFallTrue();
+        player.GetComponent<PrometeoCarController>().linkAllButtons();
     }
 
     public void Lost()
@@ -88,7 +92,9 @@ public class GameController : MonoBehaviour
      public void GameFinished()
     {
         Time. timeScale = 0;
-        TotalTimer = MinuteCount + " : " + SecondCount + " . " + MilliCount; 
+        TotalTimer = MinuteCount + " : " + SecondCount + " . " + MilliCount;
+        WinScreen.SetActive(true); 
+        finalTimerBox.GetComponent<Text>().text = TotalTimer;
 
     } 
 
@@ -102,5 +108,11 @@ public class GameController : MonoBehaviour
     {   
         Time. timeScale = 1;
         PauseScreen.SetActive(false);
+    }
+    public void setLastCheckPosition(GameObject go){
+        player.GetComponent<PlayerManager>().lastCheckPoint = go;
+    }
+    public void setFallTrueGC(){
+        player.GetComponent<PlayerManager>().setFallTrue();
     }
 }

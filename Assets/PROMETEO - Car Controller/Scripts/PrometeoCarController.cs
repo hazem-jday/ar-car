@@ -243,11 +243,7 @@ public class PrometeoCarController : MonoBehaviour
           }
         }
 
-        throttleButton = GameObject.FindGameObjectWithTag("ThrottleBtn");
-        reverseButton = GameObject.FindGameObjectWithTag("ReverseBtn");
-        turnRightButton = GameObject.FindGameObjectWithTag("RightBtn");
-        turnLeftButton = GameObject.FindGameObjectWithTag("LeftBtn");
-        handbrakeButton = GameObject.FindGameObjectWithTag("BrakeBtn");
+        
 
         if (useTouchControls){
           if(throttleButton != null && reverseButton != null &&
@@ -776,6 +772,32 @@ public class PrometeoCarController : MonoBehaviour
         rearRightCollider.sidewaysFriction = RRwheelFriction;
 
         driftingAxis = 0f;
+      }
+    }
+    public void linkAllButtons(){
+      throttleButton = GameObject.FindGameObjectWithTag("ThrottleBtn");
+      reverseButton = GameObject.FindGameObjectWithTag("ReverseBtn");
+      turnRightButton = GameObject.FindGameObjectWithTag("RightBtn");
+      turnLeftButton = GameObject.FindGameObjectWithTag("LeftBtn");
+      handbrakeButton = GameObject.FindGameObjectWithTag("BrakeBtn");
+
+      if (useTouchControls){
+          if(throttleButton != null && reverseButton != null &&
+              turnRightButton != null && turnLeftButton != null
+              && handbrakeButton != null){
+
+                throttlePTI = throttleButton.GetComponent<PrometeoTouchInput>();
+                reversePTI = reverseButton.GetComponent<PrometeoTouchInput>();
+                turnLeftPTI = turnLeftButton.GetComponent<PrometeoTouchInput>();
+                turnRightPTI = turnRightButton.GetComponent<PrometeoTouchInput>();
+                handbrakePTI = handbrakeButton.GetComponent<PrometeoTouchInput>();
+                touchControlsSetup = true;
+
+              }else{
+                String ex = "Touch controls are not completely set up. You must drag and drop your scene buttons in the" +
+                " PrometeoCarController component.";
+                Debug.LogWarning(ex);
+              }
       }
     }
 

@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31325109c7c5bce4a9880835f2d9312c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2011581070}
+  GC: {fileID: 0}
 --- !u!64 &85791052
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4084,7 +4084,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8808395970955334309, guid: 79d0ca8b77e301442afdb49f102e8aed, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 79d0ca8b77e301442afdb49f102e8aed, type: 3}
 --- !u!4 &714871967 stripped
 Transform:
@@ -8911,6 +8912,10 @@ MonoBehaviour:
   PauseScreen: {fileID: 2004166770}
   HUD: {fileID: 853237768}
   player: {fileID: 2011581070}
+  car1: {fileID: 0}
+  car2: {fileID: 0}
+  WinScreen: {fileID: 0}
+  finalTimerBox: {fileID: 0}
 --- !u!114 &1634936066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8923,6 +8928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7696221f0cbbc764498b26fbbf4228af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  car: {fileID: 0}
 --- !u!1 &1638353163
 GameObject:
   m_ObjectHideFlags: 0
@@ -9193,6 +9199,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arch_01_free_obs
+      objectReference: {fileID: 0}
+    - target: {fileID: 1890588548742467344, guid: 63f7e3a5ea486a9438b4cd3142c7dc92,
+        type: 3}
+      propertyPath: m_TagString
+      value: FirstCheckPoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f7e3a5ea486a9438b4cd3142c7dc92, type: 3}
@@ -12577,6 +12588,7 @@ GameObject:
   - component: {fileID: 7462037282473970439}
   - component: {fileID: 7462037282487944839}
   - component: {fileID: 7462037282486698147}
+  - component: {fileID: 7462037282493969256}
   m_Layer: 5
   m_Name: Return BTN
   m_TagString: Untagged
@@ -12584,6 +12596,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7462037282493969256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462037282493969255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7383b0249d8dbfb43b2b9070f3471ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonPressed: 0
+  player: {fileID: 0}
 --- !u!33 &8614370026039758784
 MeshFilter:
   m_ObjectHideFlags: 0

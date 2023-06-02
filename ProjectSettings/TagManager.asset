@@ -11,6 +11,8 @@ TagManager:
   - LeftBtn
   - BrakeBtn
   - FirstCheckPoint
+  - ResetBtn
+  - GC
   layers:
   - Default
   - TransparentFX

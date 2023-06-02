@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class checkpoint : MonoBehaviour
 {
-    public GameObject player;
+    public GameObject GC;
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        GC = GameObject.FindGameObjectWithTag("GC");
     }
     private void OnTriggerEnter(Collider collision) {
         if(collision.gameObject.tag =="Player"){
-            player.GetComponent<PlayerManager>().lastCheckPoint = this.gameObject;
+            GC.GetComponent<GameController>().setLastCheckPosition(this.gameObject);
+            
         }
     }
 }

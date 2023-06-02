@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class fallCheck : MonoBehaviour
 {
-   public GameObject player;
+   public GameObject GC;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        GC = GameObject.FindGameObjectWithTag("GC");
     }
     private void OnTriggerEnter(Collider collision) {
         if(collision.gameObject.tag =="Player"){
-            player.GetComponent<PlayerManager>().setFallTrue();
+            GC.GetComponent<GameController>().setFallTrueGC();
         }
     }
 }

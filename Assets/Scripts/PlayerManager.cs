@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         lastCheckPoint = GameObject.FindGameObjectWithTag("FirstCheckPoint");
+        setFallTrue();
     }
     // Update is called once per frame
     void Update()
